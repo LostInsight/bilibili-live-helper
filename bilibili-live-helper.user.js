@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bilibili直播间挂机助手
 // @namespace    SeaLoong
-// @version      1.2.9
+// @version      1.2.11
 // @description  Bilibili直播间自动签到，领瓜子，参加抽奖，完成任务，送礼等
 // @author       SeaLoong
 // @include      /https?:\/\/live\.bilibili\.com\/\d+/
@@ -12,11 +12,6 @@
 
 (function() {
     'use strict';
-    
-    var head = document.getElementsByTagName('head')[0];
-    var script_rollbar= document.createElement('script');
-    script_rollbar.innerHTML =  'var _rollbarConfig={accessToken:"90ab7491d4864fa891e8072d86405845",captureUncaught:true,payload:{environment:"production"}};!function(r){function o(n){if(e[n])return e[n].exports;var t=e[n]={exports:{},id:n,loaded:!1};return r[n].call(t.exports,t,t.exports,o),t.loaded=!0,t.exports}var e={};return o.m=r,o.c=e,o.p="",o(0)}([function(r,o,e){"use strict";var n=e(1),t=e(4);_rollbarConfig=_rollbarConfig||{},_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://cdnjs.cloudflare.com/ajax/libs/rollbar.js/2.3.1/rollbar.min.js",_rollbarConfig.async=void 0===_rollbarConfig.async||_rollbarConfig.async;var a=n.setupShim(window,_rollbarConfig),l=t(_rollbarConfig);window.rollbar=n.Rollbar,a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,l)},function(r,o,e){"use strict";function n(r){return function(){try{return r.apply(this,arguments)}catch(r){try{console.error("[Rollbar]: Internal error",r)}catch(r){}}}}function t(r,o){this.options=r,this._rollbarOldOnError=null;var e=s++;this.shimId=function(){return e},window&&window._rollbarShims&&(window._rollbarShims[e]={handler:o,messages:[]})}function a(r,o){var e=o.globalAlias||"Rollbar";if("object"==typeof r[e])return r[e];r._rollbarShims={},r._rollbarWrappedError=null;var t=new p(o);return n(function(){o.captureUncaught&&(t._rollbarOldOnError=r.onerror,i.captureUncaughtExceptions(r,t,!0),i.wrapGlobals(r,t,!0)),o.captureUnhandledRejections&&i.captureUnhandledRejections(r,t,!0);var n=o.autoInstrument;return(void 0===n||n===!0||"object"==typeof n&&n.network)&&r.addEventListener&&(r.addEventListener("load",t.captureLoad.bind(t)),r.addEventListener("DOMContentLoaded",t.captureDomContentLoaded.bind(t))),r[e]=t,t})()}function l(r){return n(function(){var o=this,e=Array.prototype.slice.call(arguments,0),n={shim:o,method:r,args:e,ts:new Date};window._rollbarShims[this.shimId()].messages.push(n)})}var i=e(2),s=0,d=e(3),c=function(r,o){return new t(r,o)},p=d.bind(null,c);t.prototype.loadFull=function(r,o,e,t,a){var l=function(){var o;if(void 0===r._rollbarDidLoad){o=new Error("rollbar.js did not load");for(var e,n,t,l,i=0;e=r._rollbarShims[i++];)for(e=e.messages||[];n=e.shift();)for(t=n.args||[],i=0;i<t.length;++i)if(l=t[i],"function"==typeof l){l(o);break}}"function"==typeof a&&a(o)},i=!1,s=o.createElement("script"),d=o.getElementsByTagName("script")[0],c=d.parentNode;s.crossOrigin="",s.src=t.rollbarJsUrl,e||(s.async=!0),s.onload=s.onreadystatechange=n(function(){if(!(i||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){s.onload=s.onreadystatechange=null;try{c.removeChild(s)}catch(r){}i=!0,l()}}),c.insertBefore(s,d)},t.prototype.wrap=function(r,o,e){try{var n;if(n="function"==typeof o?o:function(){return o||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._rollbar_wrapped&&(r._rollbar_wrapped=function(){e&&"function"==typeof e&&e.apply(this,arguments);try{return r.apply(this,arguments)}catch(e){var o=e;throw"string"==typeof o&&(o=new String(o)),o._rollbarContext=n()||{},o._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=o,o}},r._rollbar_wrapped._isWrap=!0,r.hasOwnProperty))for(var t in r)r.hasOwnProperty(t)&&(r._rollbar_wrapped[t]=r[t]);return r._rollbar_wrapped}catch(o){return r}};for(var u="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,captureDomContentLoaded,captureLoad".split(","),f=0;f<u.length;++f)t.prototype[u[f]]=l(u[f]);r.exports={setupShim:a,Rollbar:p}},function(r,o){"use strict";function e(r,o,e){if(r){var t;"function"==typeof o._rollbarOldOnError?t=o._rollbarOldOnError:r.onerror&&!r.onerror.belongsToShim&&(t=r.onerror,o._rollbarOldOnError=t);var a=function(){var e=Array.prototype.slice.call(arguments,0);n(r,o,t,e)};a.belongsToShim=e,r.onerror=a}}function n(r,o,e,n){r._rollbarWrappedError&&(n[4]||(n[4]=r._rollbarWrappedError),n[5]||(n[5]=r._rollbarWrappedError._rollbarContext),r._rollbarWrappedError=null),o.handleUncaughtException.apply(o,n),e&&e.apply(r,n)}function t(r,o,e){if(r){"function"==typeof r._rollbarURH&&r._rollbarURH.belongsToShim&&r.removeEventListener("unhandledrejection",r._rollbarURH);var n=function(r){var e=r.reason,n=r.promise,t=r.detail;!e&&t&&(e=t.reason,n=t.promise),o&&o.handleUnhandledRejection&&o.handleUnhandledRejection(e,n)};n.belongsToShim=e,r._rollbarURH=n,r.addEventListener("unhandledrejection",n)}}function a(r,o,e){if(r){var n,t,a="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(n=0;n<a.length;++n)t=a[n],r[t]&&r[t].prototype&&l(o,r[t].prototype,e)}}function l(r,o,e){if(o.hasOwnProperty&&o.hasOwnProperty("addEventListener")){for(var n=o.addEventListener;n._rollbarOldAdd&&n.belongsToShim;)n=n._rollbarOldAdd;var t=function(o,e,t){n.call(this,o,r.wrap(e),t)};t._rollbarOldAdd=n,t.belongsToShim=e,o.addEventListener=t;for(var a=o.removeEventListener;a._rollbarOldRemove&&a.belongsToShim;)a=a._rollbarOldRemove;var l=function(r,o,e){a.call(this,r,o&&o._rollbar_wrapped||o,e)};l._rollbarOldRemove=a,l.belongsToShim=e,o.removeEventListener=l}}r.exports={captureUncaughtExceptions:e,captureUnhandledRejections:t,wrapGlobals:a}},function(r,o){"use strict";function e(r,o){this.impl=r(o,this),this.options=o,n(e.prototype)}function n(r){for(var o=function(r){return function(){var o=Array.prototype.slice.call(arguments,0);if(this.impl[r])return this.impl[r].apply(this.impl,o)}},e="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,_createItem,wrap,loadFull,shimId,captureDomContentLoaded,captureLoad".split(","),n=0;n<e.length;n++)r[e[n]]=o(e[n])}e.prototype._swapAndProcessMessages=function(r,o){this.impl=r(this.options);for(var e,n,t;e=o.shift();)n=e.method,t=e.args,this[n]&&"function"==typeof this[n]&&("captureDomContentLoaded"===n||"captureLoad"===n?this[n].apply(this,[t[0],e.ts]):this[n].apply(this,t));return this},r.exports=e},function(r,o){"use strict";r.exports=function(r){return function(o){if(!o&&!window._rollbarInitialized){r=r||{};for(var e,n,t=r.globalAlias||"Rollbar",a=window.rollbar,l=function(r){return new a(r)},i=0;e=window._rollbarShims[i++];)n||(n=e.handler),e.handler._swapAndProcessMessages(l,e.messages);window[t]=n,window._rollbarInitialized=!0}}}}]);';
-    head.insertBefore(script_rollbar,head.childNodes[0]);
 
     /* 可修改以下内容用以自定义功能 */
     var CONFIG = { // 请注意JSON格式
@@ -24,13 +19,14 @@
         USE_AWARD: true, // 自动领取瓜子: true:启用, false:不启用
         USE_LOTTERY: true, // 自动参加抽奖: true:启用, false:不启用
         USE_TASK: true, // 自动完成任务: true:启用, false:不启用
-        USE_GIFT: false, // 自动送礼物: true:启用, false:不启用
+        USE_GIFT: true, // 自动送礼物: true:启用, false:不启用
         GIFT_CONFIG: { // 若启用自动送礼物，则需要设置以下项
             SHORT_ROOMID: 0, // 送礼物的直播间ID(即地址中live.bilibili.com/后面的数字), 设置为0则表示自动检查当前主播勋章
             CHANGE_MEDAL: true, // 当有当前主播勋章，且当前佩戴的勋章不是当前主播勋章时自动切换为当前主播勋章: true:自动切换，false:不切换
             USE_SILVER: false, // 消耗银瓜子购买辣条来送礼物: true:允许, false:不允许
             ONLY_AFTER_23: true, // 只允许在23:00后消耗银瓜子购买辣条送礼物: true:只允许23:00后，false:任意时间都可用银瓜子
-            ALLOW_GIFT: [1] // 设置允许送的礼物类型编号(见下方列表)，多个请用英文逗号(,)隔开，为空则表示允许送出所有类型的礼物
+            ALLOW_GIFT: [1], // 设置允许送的礼物类型编号(见下方列表)，多个请用英文逗号(,)隔开，为空则表示允许送出所有类型的礼物
+            SEND_TODAY: true // 送出包裹中今天到期的礼物(若今日亲密度已满则不送): true:启用，false:不启用
         },
         SHOW_TOAST: true // 显示浮动提示: true:显示，false:不显示
     };
@@ -103,15 +99,15 @@
     };
     var API = {
         last_ajax: 0,
-        cnt_fast_ajax: 0,
+        cnt_frequently_ajax: 0,
         ajax: function(settings) {
             if (Date.now() - API.last_ajax < 20) {
-                API.cnt_fast_ajax++;
+                API.cnt_frequently_ajax++;
             } else {
-                API.cnt_fast_ajax = 0;
+                API.cnt_frequently_ajax = 0;
             }
             API.last_ajax = Date.now();
-            if (API.cnt_fast_ajax > 5) throw Error('调用Bilibili API太快，可能出现了bug');
+            if (API.cnt_frequently_ajax > 5) throw new Error('调用Bilibili API太快，可能出现了bug');
             // DEBUG('API.ajax: settings:' + JSON.stringify(settings));
             if (settings.xhrFields) {
                 $.extend(settings.xhrFields, {
@@ -841,13 +837,15 @@
             return null;
         }
     }
+
     /* TODO
-        function recognizeCaptcha() {
-            var ctx = DOM.storm.canvas[0].getContext('2d');
-            ctx.drawImage(DOM.storm.image[0], 0, 0, 112, 32);
-            return OCRAD(ctx.getImageData(0, 0, 112, 32));
-        }
+    function recognizeCaptcha() {
+        var ctx = DOM.storm.canvas[0].getContext('2d');
+        ctx.drawImage(DOM.storm.image[0], 0, 0, 112, 32);
+        return OCRAD(ctx.getImageData(0, 0, 112, 32));
+    }
     */
+
     var liveQuickLogin = function() {
         if (!getCookie('DedeUserID') && !getCookie('LIVE_LOGIN_DATA')) {
             try {
@@ -886,9 +884,6 @@
 
     function toast(e, n, r) {
         var t = Toast.element;
-        var now = new Date();
-        Rollbar.info('['+now.toLocaleTimeString()+']'+'【B站挂机】<'+n+'>'+e);
-        console.log('['+now.toLocaleTimeString()+']'+'【B站挂机】<'+n+'>'+e);
         if (!CONFIG.SHOW_TOAST || !t) return;
         if ('boolean' == typeof n) n = 'info';
         var o = document.createDocumentFragment(),
@@ -904,12 +899,14 @@
             l = c.width,
             f = c.height,
             p = document.documentElement && document.documentElement.scrollLeft || document.body.scrollLeft;
-        a.style.left = s + l + p + 'px';
+        // a.style.left = s + l + p + 'px';
+        a.style.left = s + p + 'px';
         var d = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop;
-        a.style.top = u + f + d + Toast.count * 40 + 'px';
+        // a.style.top = u + f + d + Toast.count * 40 + 'px';
+        a.style.top = u + d + Toast.count * 40 + 'px';
         setTimeout((function() {
             a.className += ' out';
-            setTimeout((function() { // TODO
+            setTimeout((function() {
                 Toast.count--;
                 Toast.list.unshift();
                 Toast.list.forEach(function(v) {
@@ -1043,49 +1040,61 @@
                         if (CONFIG.USE_GIFT) str.push('自动送礼');
                         if (str.length) str = str.join('，');
                         else str = '无';
-                        toast('助手已启用功能：' + str, 'info');
+                        toast('助手已启用功能：' + str, 'caution');
                         TaskStart();
                     }, 3e3);
                 } else {
                     // 未登录
-                    toast('你还没有登录，助手无法使用！', 'error');
+                    toast('你还没有登录，助手无法使用！', 'caution');
                 }
                 return true;
             }
         });
     }
+
     /*
-        function TaskLogWatcher(callback) {
-            var logs_last_length = 0;
-            setInterval(function() {
-                if (logs_last_length !== window.Yb.length) {
-                    var logs_new = window.Yb.slice(logs_last_length, window.Yb.length);
-                    if (logs_new && logs_new.length) {
-                        logs_last_length = window.Yb.length;
-                        callback(logs_new);
-                    }
+    function TaskLogWatcher(callback) {
+        var logs_last_length = 0;
+        setInterval(function() {
+            if (logs_last_length !== window.Yb.length) {
+                var logs_new = window.Yb.slice(logs_last_length, window.Yb.length);
+                if (logs_new && logs_new.length) {
+                    logs_last_length = window.Yb.length;
+                    callback(logs_new);
                 }
-            }, 1000);
-        }
+            }
+        }, 1000);
+    }
     */
+
     function SmallTV(room_id, callback) {
         API.gift.smalltv.check(room_id).done(function(response) { // 检查是否有小电视抽奖
             DEBUG('TaskLottery: smalltv.check: ' + JSON.stringify(response));
             if (response.code === 0) {
                 response.data.forEach(function(v) {
-                    var time = v.time;
+                    var time = v.time * 1e3;
                     if (v.status === 1) { // 可以参加
                         API.gift.smalltv.join(room_id, v.raffleId).done(function(response) {
                             DEBUG('TaskLottery: smalltv.join: ' + JSON.stringify(response));
+                            if (response.data.time > ts_ms()) time = response.data.time - ts_ms();
+                            else if (response.data.time > ts_s()) time = (response.data.time - ts_s()) * 1e3;
+                            else if (response.data.time > 0) time = response.data.time * 1e3;
                             if (response.code === 0) {
                                 setTimeout(function() {
                                     SmallTVNotice(room_id, response.data.raffleId, function(msg) {
                                         toast(msg, 'info');
                                     }, 0);
-                                }, time * 1e3 + 8e3);
+                                }, time + 9e3);
                                 callback();
                             }
                         });
+                    } else if (v.status === 2 && v.time > 0) { // 已参加且未开奖
+                        setTimeout(function() {
+                            SmallTVNotice(room_id, response.data.raffleId, function(msg) {
+                                toast(msg, 'info');
+                            }, 0);
+                        }, time + 9e3);
+                        callback();
                     }
                 });
             }
@@ -1097,19 +1106,29 @@
             DEBUG('TaskLottery: activity.check: ' + JSON.stringify(response));
             if (response.code === 0) {
                 response.data.forEach(function(v) {
+                    var time = v.time * 1e3;
                     if (v.status === 1) {
-                        var time = v.time;
                         API.activity.join(room_id, v.raffleId).done(function(response) {
                             DEBUG('TaskLottery: activity.join: ' + JSON.stringify(response));
+                            if (response.data.time > ts_ms()) time = response.data.time - ts_ms();
+                            else if (response.data.time > ts_s()) time = (response.data.time - ts_s()) * 1e3;
+                            else if (response.data.time > 0) time = response.data.time * 1e3;
                             if (response.code === 0) {
                                 setTimeout(function() {
                                     RaffleNotice(room_id, response.data.raffleId, function(msg) {
                                         toast(msg, 'info');
                                     }, 0);
-                                }, time * 1e3 + 8e3);
+                                }, time + 9e3);
                                 callback();
                             }
                         });
+                    } else if (v.status === 2 && v.time > 0) { // 已参加且未开奖
+                        setTimeout(function() {
+                            RaffleNotice(room_id, response.data.raffleId, function(msg) {
+                                toast(msg, 'info');
+                            }, 0);
+                        }, time + 9e3);
+                        callback();
                     }
                 });
             }
@@ -1117,7 +1136,7 @@
     }
 
     function SmallTVNotice(room_id, raffleId, callback, cnt) {
-        if (cnt > 5) return;
+        if (cnt > 10) return;
         API.gift.smalltv.notice(room_id, raffleId).done(function(response) {
             DEBUG('TaskLottery: smalltv.notice: ' + JSON.stringify(response));
             if (response.code === 0 && response.data.status !== 3) {
@@ -1136,7 +1155,7 @@
     }
 
     function RaffleNotice(room_id, raffleId, callback, cnt) {
-        if (cnt > 5) return;
+        if (cnt > 10) return;
         API.activity.notice(room_id, raffleId).done(function(response) {
             DEBUG('TaskLottery: activity.notice: ' + JSON.stringify(response));
             if (response.code === 0) {
@@ -1153,32 +1172,34 @@
             }
         });
     }
+
     /*
-        function Storm(cnt) {
-            if (cnt > 5) return;
-            API.create(112, 32).done(function(response) {
-                if (response.code === 0) {
-                    DOM.storm.image.load(function() {
-                        // TODO
-                        var phrase = recognizeCaptcha();
-                        // 暂时不清楚验证码与phrase的关系，猜测是对验证码计算sha1
-                        API.lottery.join(id, color, response.data.token, phrase, Info.csrf_token).done(function(response) {
-                            if (response.code === 0) {
-                                toast('节奏风暴抽奖结果：' + response.data.gift_name + '*' + response.data.gift_num, 'info');
-                            } else {
-                                setTimeout(function() {
-                                    Storm(cnt + 1);
-                                }, 1e3);
-                            }
-                        });
+    function Storm(cnt) {
+        if (cnt > 20) return;
+        API.create(112, 32).done(function(response) {
+            if (response.code === 0) {
+                DOM.storm.image.load(function() {
+                    // TODO
+                    var phrase = recognizeCaptcha();
+                    // 暂时不清楚验证码与phrase的关系，猜测是对验证码计算sha1
+                    API.lottery.join(id, color, response.data.token, phrase, Info.csrf_token).done(function(response) {
+                        if (response.code === 0) {
+                            toast('节奏风暴抽奖结果：' + response.data.gift_name + '*' + response.data.gift_num, 'info');
+                        } else {
+                            setTimeout(function() {
+                                Storm(cnt + 1);
+                            }, 1e3);
+                        }
                     });
-                    DOM.storm.image.attr('src', response.data.image);
-                }
-            });
-        }
+                });
+                DOM.storm.image.attr('src', response.data.image);
+            }
+        });
+    }
     */
+
     function Award(callback, cnt) {
-        if (cnt > 5) {
+        if (cnt > 10) {
             callback();
             return;
         }
@@ -1195,13 +1216,18 @@
                             callback();
                         } else if (response.code === -903) {
                             // -903: 已经领取过这个宝箱
-                            toast('已经领取过这个宝箱', 'success');
+                            toast('已经领取过这个宝箱', 'caution');
                             callback();
                         } else if (response.code === -902 || response.code === -901) {
                             // -902: 验证码错误, -901: 验证码过期
                             setTimeout(function() {
                                 Award(callback, cnt + 1);
-                            }, 2e3);
+                            }, 1e3);
+                        } else {
+                            // 其他错误
+                            setTimeout(function() {
+                                Award(callback, cnt + 1);
+                            }, 3e3);
                         }
                     });
                 } else {
@@ -1221,10 +1247,7 @@
             overlap_index = Infinity;
         $('div.chat-item.system-msg div.msg-content a.link').each(function(index, el) {
             var matched = el.pathname.match(/^\/(\d+).*/);
-            if (matched && matched[1]) {
-                var short_id = parseInt(matched[1], 10);
-                lottery_list_temp.push(short_id);
-            }
+            if (matched && matched[1]) lottery_list_temp.push(parseInt(matched[1], 10));
         });
         $.each(lottery_list_temp, function(i, v) {
             if (i === 0) {
@@ -1239,21 +1262,21 @@
                 lottery_list.push(v);
             }
         });
+        DEBUG('TaskLottery: Lottery: last: ' + lottery_list_last.toString());
         lottery_list_last = lottery_list_temp;
         lottery_list_temp = lottery_list;
         lottery_list = [];
         lottery_list_temp.forEach(function(v) {
             if (lottery_list.indexOf(v) === -1) lottery_list.push(v);
         });
-        DEBUG('TaskLottery: Lottery: last: ' + lottery_list_last.toString());
         DEBUG('TaskLottery: Lottery: list: ' + lottery_list.toString());
         // 根据可抽奖的房间数自动调整检测周期
-        if (lottery_list.length > 11) {
-            lottery_check_time = 4;
-        } else if (lottery_list.length > 9) {
-            lottery_check_time = 7;
-        } else if (lottery_list.length > 6) {
-            lottery_check_time = 11;
+        if (lottery_list.length > 10) {
+            lottery_check_time = 3;
+        } else if (lottery_list.length > 8) {
+            lottery_check_time = 6;
+        } else if (lottery_list.length > 5) {
+            lottery_check_time = 10;
         } else if (lottery_list.length > 1) {
             lottery_check_time = 15;
         } else {
@@ -1318,11 +1341,11 @@
             if (response.code === 0) {
                 // 获取任务成功
                 if (parseInt(response.data.minute, 10) !== 0) {
-                    setTimeout(TaskAward, response.data.minute * 60e3 + 5e3);
+                    setTimeout(TaskAward, response.data.minute * 60e3 + 1e3);
                     TaskAward_Running = true;
                     execUntilSuccess(function() {
                         if (DOM.treasure.div_timer) {
-                            DOM.treasure.div_timer.text((response.data.minute * 60e3 + 4e3) + 's');
+                            DOM.treasure.div_timer.text((response.data.minute * 60e3 + 1e3) + 's');
                             return true;
                         }
                     });
@@ -1355,7 +1378,7 @@
     }
 
     function TaskLottery() {
-        setTimeout(Lottery, 4e3);
+        setTimeout(Lottery, 2e3);
     }
 
     function TaskReceiveAward(task_id) {
@@ -1411,17 +1434,6 @@
     }
 
     function Gift() {
-        /*
-        任务周期1小时，脚本运行后立即执行一次任务
-        判断是否佩戴当前主播的头衔
-        否：判断是否拥有当前主播的头衔，有则自动切换，没有则停止任务
-        是：刷新当前亲密度上限和已喂养亲密度
-        可以继续喂养则刷新背包，不可以则停止任务
-        按照过期时间(天)从短到长排序，同一天按照礼物提供的亲密度从大到小排序
-        按已排序的背包顺序送礼，直到亲密度已满或无法送礼，如：亲密度还可增加9但没有辣条，此时不送礼物
-        可选：消耗银瓜子购买辣条送礼，直到亲密度已满或银瓜子不足
-             可选：当前时间超过23:00时才消耗银瓜子
-        */
         API.live_user.get_weared_medal(Info.uid, Info.roomid, Info.csrf_token).done(function(response) {
             DEBUG('TaskGift: get_weared_medal: ' + JSON.stringify(response));
             if (response.code === 0) {
@@ -1442,7 +1454,7 @@
                             // DEBUG('TaskGift: remain_feed: ' + remain_feed + ',day_limit:' + Info.day_limit + ',today_feed:' + Info.today_feed);
                             $.each(Info.bag_list, function(i, v) {
                                 if (remain_feed <= 0) return false;
-                                else if (CONFIG.GIFT_CONFIG.ALLOW_GIFT.indexOf(v.gift_id) > -1 || !CONFIG.GIFT_CONFIG.ALLOW_GIFT[0]) {
+                                else if ((CONFIG.GIFT_CONFIG.ALLOW_GIFT.indexOf(v.gift_id) > -1 || !CONFIG.GIFT_CONFIG.ALLOW_GIFT[0]) || (CONFIG.GIFT_CONFIG.SEND_TODAY && v.expire_at - ts_s() < 86400)) {
                                     var feed_single = giftIDtoFeed(v.gift_id);
                                     // DEBUG('TaskGift: Before bag_send: remain_feed:' + remain_feed + ',giftIDtoFeed(v.gift_id):' + giftIDtoFeed(v.gift_id) + ',' + JSON.stringify(v));
                                     if (feed_single > 0) {
@@ -1517,7 +1529,7 @@
         if (!(CONFIG.GIFT_CONFIG.SHORT_ROOMID === 0 || CONFIG.GIFT_CONFIG.SHORT_ROOMID == Info.short_id)) return;
         if (Info.medal_target_id !== Info.ruid) {
             if (!CONFIG.GIFT_CONFIG.CHANGE_MEDAL) {
-                toast('已佩戴的勋章不是当前主播勋章，送礼功能停止', 'info');
+                toast('已佩戴的勋章不是当前主播勋章，送礼功能停止', 'caution');
                 return;
             }
             API.i.medal(1, 25).done(function(response) {
@@ -1529,7 +1541,8 @@
                             API.i.ajaxWearFansMedal(v.medal_id).done(function(response) {
                                 DEBUG('TaskGift: ajaxWearFansMedal: ' + JSON.stringify(response));
                                 toast('已自动切换为当前主播勋章', 'success');
-                                setTimeout(Gift, 9e3);
+                                toast('请注意送礼设置，20秒后开始送礼', 'caution');
+                                setTimeout(Gift, 20e3);
                             });
                             return false;
                         }
@@ -1537,7 +1550,8 @@
                 }
             });
         } else {
-            setTimeout(Gift, 9e3);
+            toast('请注意送礼设置，20秒后开始送礼', 'caution');
+            setTimeout(Gift, 20e3);
         }
     }
 
